@@ -2,16 +2,15 @@ import "./styles.css";
 
 import { Login } from "./Pages/login";
 import { Signup } from "./Pages/signup";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Home } from "/Pages/home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Link to={"/login"}>Log In</Link>
-          <br />
-          <Link to={"/signup"}>Sign Up</Link>
+          <Home />
         </Route>
         <Route path="/login">
           <div className="App">
