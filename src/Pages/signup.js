@@ -1,20 +1,25 @@
 import React from "react";
+import { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Form } from "../Components/Form/form";
 import { Error } from "../Components/Error/error"
 
 export const Signup = () => {
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
 
   document.body.classList.add("background");
 
   const handleFormSubmit = async (e) => {
-    document.body.classList.remove("background");
-    history.push("/");
-    console.log(e.target.username.value, e.target.password.value);
+    if(e.target.password.value !== e.target.confirm_password.value) {
+      setErrorMessage("Passwords do not match.")
+      setShowError(true);
+      return null;
+    }
 
     const res = await fetch(
-      "https://messaging-web-app.herokuapp.com/api/new-account",
+      "https://messaging-web-app-api.herokuapp.com/api/new-account",
       {
         method: "POST",
         body: JSON.stringify({
@@ -24,13 +29,24 @@ export const Signup = () => {
       }
     );
     const data = await res.json();
+    if (data.status === "201") {
+      history.push("/");
+      document.body.classList.remove("background");
+    } else {
+      setErrorMessage(data.message);
+      setShowError(true);
+    }
     console.log(data);
   };
+
+  const closeError = () => {
+    setShowError(false);
+  }
 
   return (
     <div>
       <h1>Sign Up</h1>
-      <Error message={"Hello"} />
+      {showError && <Error message={errorMessage} onBtnClick={closeError} />}
       <Form onFormSubmit={handleFormSubmit} validatePassword={true} />
       <hr />
       Already have an account? <Link to="/login">Log In</Link>

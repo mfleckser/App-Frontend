@@ -14,19 +14,22 @@ export const Form = ({ onFormSubmit, validatePassword }) => {
           className="text-input"
           placeholder={"Username"}
           name="username"
+          required
         ></input>
         <input
           type="password"
           className="text-input"
           placeholder={"Password"}
           name="password"
+          required
         ></input>
         {validatePassword && (
           <input
             type="password"
             className="text-input"
             placeholder={"Confirm Password"}
-            name="confirm-password"
+            name="confirm_password"
+            required
           ></input>
         )}
         <input type="submit" value="Enter" className={"submit-btn"}></input>

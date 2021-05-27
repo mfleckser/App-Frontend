@@ -90,3 +90,31 @@
 .submit-btn:focus {
   outline: none;
 }
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.6);
+  border: 2px solid rgba(255, 0, 0, 0.9);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  color: #111111;
+}
+
+.error-btn {
+  background: none;
+  border: none;
+  border-radius: 100%;
+  padding-left: 4.32px;
+  padding-right: 4.32px;
+  margin-left: 20px;
+  vertical-align: middle;
+  font-weight: 800;
+  height: 17px;
+}
+
+.error-btn:hover {
+  background-color: red;
+  font-weight: 900;
+}
