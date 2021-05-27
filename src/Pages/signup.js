@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Form } from "../Components/Form/form";
+import { Error } from "../Components/Error/error"
 
 export const Signup = () => {
   const history = useHistory();
@@ -17,8 +18,8 @@ export const Signup = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          username: "new_uname",
-          password: "secure_password"
+          username: e.target.username.value,
+          password: e.target.password.value
         })
       }
     );
@@ -29,6 +30,7 @@ export const Signup = () => {
   return (
     <div>
       <h1>Sign Up</h1>
+      <Error message={"Hello"} />
       <Form onFormSubmit={handleFormSubmit} validatePassword={true} />
       <hr />
       Already have an account? <Link to="/login">Log In</Link>
